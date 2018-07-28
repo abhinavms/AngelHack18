@@ -25,7 +25,7 @@
 
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(10.06,76.33),
+          center: new google.maps.LatLng(10.056897,76.355665),
           zoom: 16
 
         });
@@ -111,7 +111,7 @@
             Array.prototype.forEach.call(markers, function(markerElem) {
               var id = markerElem.getAttribute('id');
               var name = markerElem.getAttribute('name');
-              var address = markerElem.getAttribute('address');
+              //var address = markerElem.getAttribute('address');
 			  var space = markerElem.getAttribute('space');
               var total = markerElem.getAttribute('total');
               var point = new google.maps.LatLng(
@@ -120,12 +120,12 @@
 
               var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
-              strong.textContent = name
+              strong.textContent = name;
               infowincontent.appendChild(strong);
               infowincontent.appendChild(document.createElement('br'));
 
               var text = document.createElement('text');
-              text.textContent = address
+              text.textContent = "Free spot : " + space + "/" + total;
               infowincontent.appendChild(text);
               var icon = space;
               var marker = new google.maps.Marker({
