@@ -19,7 +19,7 @@ if (!$db_selected) {
 }
 
 // Select all the rows in the markers table
-$query = "SELECT * FROM markers WHERE 1";
+$query = "SELECT * FROM marker WHERE 1";
 $result = mysqli_query($db_selected,$query);
 if (!$result) {
   die('Invalid query: ' . mysqli_error());
@@ -40,8 +40,8 @@ while ($row = @mysqli_fetch_assoc($result)){
   echo 'address="' . parseToXML($row['address']) . '" ';
   echo 'lat="' . $row['lat'] . '" ';
   echo 'lng="' . $row['lng'] . '" ';
-  echo 'total="' . $row['total'] . '" ';
   echo 'space="' . $row['space'] . '" ';
+  echo 'total="' . $row['total'] . '" ';
   echo '/>';
   $ind = $ind + 1;
 }
