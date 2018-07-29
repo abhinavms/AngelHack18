@@ -5,7 +5,6 @@ $db_selected = mysqli_connect($host, $username, $password, $database);
 if (!$db_selected) {
   die ('Can\'t use db : ' . mysqli_error());
 }
-
 $stat = $_POST['status'];
 // Select all the rows in the markers table
 if(isset($_POST['submit']) && $_POST['submit'] == "submit"){
@@ -39,7 +38,6 @@ else if($stat == 'free2'){
     $query = "UPDATE nippon SET `Departure` = now() WHERE `slno` = '2'";
     $result = mysqli_query($db_selected,$query);
 }
-
 }
 ?>
 <html class="no-js" lang="en">
@@ -191,7 +189,12 @@ else if($stat == 'free2'){
             <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Departure Time - <?php echo $depart[0]; ?></h6> </div>    
             <div> <h6 style="padding-left:5%; padding-top:2%; padding-bottom:3%; margin: 0%;">Total Fee -  <?php echo $rate[0]; ?></h6> </div>
 
-  <div> <h4 style="padding-left:5%; padding-top:3%; margin: 0%;"> Spot 2 : </h4> </div> 
+  
+        </div>
+
+          <div class="container" style="background-color: white; border-radius: 25px; margin-left: 6%; margin-right: 6%; margin-top: 10%; margin-bottom: 0%">
+
+                <div> <h4 style="padding-left:5%; padding-top:3%; margin: 0%;"> Spot 2 : </h4> </div> 
     <h6 style="padding-left:5%; padding-top:3%; margin: 0%;"> License Number - <?php echo $license[1]; ?> </h6>   
              <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;"> Current Status 
             <form method = "POST">
@@ -215,8 +218,7 @@ else if($stat == 'free2'){
             <div> <h6 style="padding-left:5%; padding-top:2%; padding-bottom:3%; margin: 0%;">Total Fee -  <?php echo $rate[1]; ?></h6> </div>
         </div>
         </div>
-
-
+</div>
 
     </section>
 
