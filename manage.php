@@ -1,4 +1,47 @@
-<!DOCTYPE html>
+<?php
+include("php/credentials.php");
+// Opens a connection to a MySQL server
+$db_selected = mysqli_connect($host, $username, $password, $database);
+if (!$db_selected) {
+  die ('Can\'t use db : ' . mysqli_error());
+}
+
+$stat = $_POST['status'];
+// Select all the rows in the markers table
+if(isset($_POST['submit']) && $_POST['submit'] == "submit"){
+    $entered = TRUE;
+    $query = "SELECT * FROM nippon WHERE 1";
+    $result = mysqli_query($db_selected,$query);
+    if (!$result) {
+        die('Invalid query: ' . mysqli_error());
+    }
+    $i=0;
+while($row = mysqli_fetch_assoc($result)){
+    $license[$i] = $row['VNumber'];
+    $arrival[$i] = $row['Arrival'];
+    $depart[$i] = $row['Departure'];
+    $rate[$i] = $row['Rate'];
+    $i++;
+}
+if($stat == 'taken1'){
+    $query = "UPDATE nippon SET `Arrival` = now() WHERE `slno` = '1'";
+    $result = mysqli_query($db_selected,$query);
+}
+else if($stat == 'free1'){
+    $query = "UPDATE nippon SET `Departure` = now() WHERE `slno` = '1'";
+    $result = mysqli_query($db_selected,$query);
+}
+else if($stat == 'taken2'){
+    $query = "UPDATE nippon SET `Arrival` = now() WHERE `slno` = '2'";
+    $result = mysqli_query($db_selected,$query);
+}
+else if($stat == 'free2'){
+    $query = "UPDATE nippon SET `Departure` = now() WHERE `slno` = '2'";
+    $result = mysqli_query($db_selected,$query);
+}
+
+}
+?>
 <html class="no-js" lang="en">
 
 <head>
@@ -77,7 +120,7 @@
 </style>
 </head>
 
-<body id="top" style="background: #39b54a;">
+<body id="top">
 
     <header class="s-header">
 
@@ -89,23 +132,23 @@
 
         <nav class="header-nav">
 
-            <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
+<a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
 
-            <div class="header-nav__content">
-                <h3>Welcome Carl Smith</h3>
-                
-                <ul class="header-nav__list">
-                    <li> <img style="padding-top:0%; padding-bottom:20% ;width: 30%" src="images/user.png"> </li>
-                    <li class="current"><a class="smoothscroll"  href="#0" title="home">Home</a></li>
-                    <li><a onclick="location.href='join.html'" title="add">Add Parking Spots</a></li>
-                    <li><a href="#0" title="Payment">Payment Details</a></li>
-                    <li><a href="#0" title="Accout">Account Information</a></li>
-                    <li><a href="#0" title="Settings">Settings</a></li>
-                </ul>
+<div class="header-nav__content">
+    <h3>Welcome Carl Smith</h3>
+    
+    <ul class="header-nav__list">
+        <li> <img style="padding-top:0%; padding-bottom:20% ;width: 30%" src="images/user.png"> </li>
+        <li class="current"><a class="smoothscroll"  href="#0" title="home">Home</a></li>
+        <li><a onclick="location.href='join.html'" title="add">Add Parking Spots</a></li>
+        <li><a href="#0" title="Payment">Payment Details</a></li>
+        <li><a href="#0" title="Accout">Account Information</a></li>
+        <li><a href="#0" title="Settings">Settings</a></li>
+    </ul>
 
-            </div>
+</div>
 
-        </nav> 
+</nav> 
 
         <a class="header-menu-toggle" href="#0">
             <span class="header-menu-text">Menu</span>
@@ -124,26 +167,56 @@
 
         </div>
 
-        <div class="container" style="background-color: white; border-radius: 25px; margin-left: 6%; margin-right: 6%; margin-top: 20%;">
-            <div> <h6 style="padding-left:5%; padding-top:3%; margin: 0%;"> License Number - </h6> </div>             
+        <div class="container" style="background-color: white; border-radius: 25px; margin-left: 6%; margin-right: 6%; margin-top: 10%; margin-bottom: 0%">
+            <div> <h4 style="padding-left:5%; padding-top:3%; margin: 0%;"> Spot 1 : </h4> </div> 
+            <div> <h6 style="padding-left:5%; padding-top:3%; margin: 0%;"> License Number - <?php if($entered){echo $license[0]; }?> </h6> </div>             
             <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;"> Current Status 
-                          
+            <form method = "POST">
             <p style=" margin-top:2%;  margin-bottom:0%">
-                  <input type="radio" id="test1" name="radio-group" checked>
+                  <input type="radio" id = "test1" name = "status" value = "free" checked>
                   <label for="test1">Free</label>
                 </p>
                 <p style="padding-top:0%; margin-top:0%; margin-bottom:2%;">
-                  <input type="radio" id="test2" name="radio-group">
+                  <input type="radio" id = "test2" name = "status" value = "taken" >
                   <label for="test2">Taken</label>
+                  <br>
+                  <input type="submit"style="background-color:green; color: white;" name = "submit" value = "submit">
                 </p>
-             
+          </form>  
+
 
                 </h6> </div>
-            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Duration - </h6> </div>   
-            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Arrival Time - </h6> </div>   
-            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Departure Time - </h6> </div>    
-            <div> <h6 style="padding-left:5%; padding-top:2%; padding-bottom:3%; margin: 0%;">Total Fee - </h6> </div>
+             
+            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Arrival Time - <?php echo $arrival[0]; ?></h6> </div>   
+            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Departure Time - <?php echo $depart[0]; ?></h6> </div>    
+            <div> <h6 style="padding-left:5%; padding-top:2%; padding-bottom:3%; margin: 0%;">Total Fee -  <?php echo $rate[0]; ?></h6> </div>
+
+  <div> <h4 style="padding-left:5%; padding-top:3%; margin: 0%;"> Spot 2 : </h4> </div> 
+    <h6 style="padding-left:5%; padding-top:3%; margin: 0%;"> License Number - <?php echo $license[1]; ?> </h6>   
+             <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;"> Current Status 
+            <form method = "POST">
+            <p style=" margin-top:2%;  margin-bottom:0%">
+                  <input type="radio" id = "test4" name = "status" value = "free2" checked>
+                  <label for="test4">Free</label>
+                </p>
+                <p style="padding-top:0%; margin-top:0%; margin-bottom:2%;">
+                  <input type="radio" id = "test3" name = "status" value = "taken2" >
+                  <label for="test3">Taken</label>
+                  <br>
+                  <input type="submit"style="background-color:green; color: white;" name = "submit" value = "submit">
+                </p>
+          </form>  
+           
+
+                </h6> 
+            
+            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Arrival Time - <?php echo $arrival[1]; ?></h6> </div>   
+            <div> <h6 style="padding-left:5%; padding-top:2%; margin: 0%;">Departure Time - <?php echo $depart[1]; ?></h6> </div>    
+            <div> <h6 style="padding-left:5%; padding-top:2%; padding-bottom:3%; margin: 0%;">Total Fee -  <?php echo $rate[1]; ?></h6> </div>
         </div>
+        </div>
+
+
 
     </section>
 
