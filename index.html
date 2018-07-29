@@ -13,6 +13,7 @@
 
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -54,12 +55,6 @@
                     <li>
                         <a href="#"><i class="fa fa-instagram"></i></a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-behance"></i></a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                    </li>
                 </ul>
 
             </div>
@@ -90,10 +85,10 @@
                 </h1>
 
                 <div class="home-content__buttons">
-                    <a href="#contact" class="smoothscroll btn btn--stroke">
+                    <a onclick="location.href='park.html'" class="smoothscroll btn btn--stroke">
                         I need a parking
                     </a>
-                    <a href="#about" class="smoothscroll btn btn--stroke">
+                    <a onclick="location.href='manage.html'" class="smoothscroll btn btn--stroke">
                         I have a parking
                     </a>
                 </div>
@@ -115,6 +110,15 @@
                 <h1 class="display-2">There are parking spots near you</h1>
             </div>
         </div> 
+
+        <div style="height:275px;">
+            <iframe style="width:100%; height:100%" frameborder="0" src="php/map.html">
+            </iframe>    
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+           
+                </body>
+                </html>  
+        </div>
 
     </section>
 

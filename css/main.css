@@ -1421,6 +1421,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .header-menu-icon {
+    opacity: 0.5;
     display: block;
     width: 22px;
     height: 2px;
@@ -1430,7 +1431,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     top: 50%;
     right: auto;
     bottom: auto;
-    background-color: white;
+    background-color:rgb(255, 255, 255);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
@@ -1439,7 +1440,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     content: '';
     width: 100%;
     height: 100%;
-    background-color: inherit;
+    background-color: rgb(255, 255, 255);
     position: absolute;
     left: 0;
     -webkit-transition: all 0.5s ease-in-out;
@@ -2382,7 +2383,7 @@ html.no-csstransitions .home-content__main {
 
 .s-clients {
     padding-top: 16.2rem;
-    padding-bottom: 16.8rem;
+    padding-bottom: 16.2rem;
     background-color: #e6e6e6;
     color: #757575;
     position: relative;
