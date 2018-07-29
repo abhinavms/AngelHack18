@@ -144,44 +144,6 @@ strong, b {
     font-family: "lora-bold", serif;
 }
 
-.enjoy-css {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  width: 250px;
-  height: 70px;
-  cursor: pointer;
-  margin: 0 auto;
-  border: 2px solid rgb(30,205,151);
-  -webkit-border-radius: 40px;
-  border-radius: 40px;
-  font: normal 37px/70px "Advent Pro", Helvetica, sans-serif;
-  color: rgb(30, 205, 151);
-  text-align: center;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  letter-spacing: 1px;
-  background: rgba(0,0,0,0);
-  -webkit-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-  -moz-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-  -o-transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-  transition: background-color 0.3s cubic-bezier(0, 0, 0, 0), color 0.3s cubic-bezier(0, 0, 0, 0), width 0.3s cubic-bezier(0, 0, 0, 0), border-width 0.3s cubic-bezier(0, 0, 0, 0), border-color 0.3s cubic-bezier(0, 0, 0, 0);
-}
-
-.enjoy-css:hover {
-  color: rgba(255,255,255,1);
-  background: rgb(30, 205, 151);
-}
-
-.enjoy-css:active {
-  border: 2px solid rgba(33,224,163,1);
-  background: rgba(33,224,163,1);
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
 small {
     font-size: 1.2rem;
     line-height: inherit;
@@ -1459,6 +1421,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .header-menu-icon {
+    opacity: 0.5;
     display: block;
     width: 22px;
     height: 2px;
@@ -1468,7 +1431,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     top: 50%;
     right: auto;
     bottom: auto;
-    background-color: white;
+    background-color:rgb(255, 255, 255);
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
@@ -1477,7 +1440,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
     content: '';
     width: 100%;
     height: 100%;
-    background-color: inherit;
+    background-color: rgb(255, 255, 255);
     position: absolute;
     left: 0;
     -webkit-transition: all 0.5s ease-in-out;
@@ -2420,7 +2383,7 @@ html.no-csstransitions .home-content__main {
 
 .s-clients {
     padding-top: 16.2rem;
-    padding-bottom: 16.8rem;
+    padding-bottom: 16.2rem;
     background-color: #e6e6e6;
     color: #757575;
     position: relative;
@@ -3056,4 +3019,55 @@ footer .row {
     .footer-main .right {
         padding-left: 0;
     }
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: #F87DA9;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+[type="radio"]:not(:checked) + label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }
