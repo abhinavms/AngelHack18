@@ -23,11 +23,11 @@
      <input style="position: absolute;box-shadow: 1px 1px 20px rgb(161, 161, 161);padding:4px;opacity:0.8;width:100%;background:white;border:none;height: 32px;margin-top: 20%;" id="pac-input" class="controls" type="text" placeholder="Enter Destination">
 
     <div id="map"></div>
-    <div id="conf" style="width:100%; height: 25%;">
-      <button>Submit</button>
+    <div id="conf">
+      <button type="submit"></button>
     </div>
     <script>
-      document.querySelector("#conf").style.display = "none";
+        var conf=document.querySelector("#conf");
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(10.06,76.33),
@@ -122,9 +122,10 @@
                 label: icon
               });
               marker.addListener('click', function() {
+                alert('Clicked')
+                conf.style.visibility="visible";
                 infoWindow.setContent(infowincontent);
                 infoWindow.open(map, marker);
-                document.querySelector("#conf").style.display = "block";
               });
             });
           });
